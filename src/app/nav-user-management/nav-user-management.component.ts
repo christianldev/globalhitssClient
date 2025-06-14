@@ -26,6 +26,10 @@ export class NavUserManagementComponent {
   users: User[] = [];
   selectedCargo: number | null = null;
   @Output() usuarioCreado = new EventEmitter<void>();
+  @Output() filtroCambiado = new EventEmitter<{
+    departamento: number | null;
+    cargo: number | null;
+  }>();
 
   constructor(
     private departamentoService: DepartamentoService,
@@ -33,6 +37,23 @@ export class NavUserManagementComponent {
     private userService: UserService,
     private dialog: MatDialog
   ) {}
+
+  onDepartamentoChange(id: number | null) {
+    this.selectedDepartamento = id;
+    this.emitirFiltro();
+  }
+
+  onCargoChange(id: number | null) {
+    this.selectedCargo = id;
+    this.emitirFiltro();
+  }
+
+  emitirFiltro() {
+    this.filtroCambiado.emit({
+      departamento: this.selectedDepartamento,
+      cargo: this.selectedCargo,
+    });
+  }
 
   openRegisterModal() {
     this.dialog

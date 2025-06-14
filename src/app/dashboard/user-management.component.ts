@@ -28,6 +28,7 @@ export class UserManagementComponent {
   users: any[] = []; // Array to hold user data
   departamentos: Departamento[] = [];
   cargos: Cargo[] = [];
+  usuariosOriginales: User[] = [];
 
   displayedColumns = [
     'Usuario',
@@ -66,14 +67,26 @@ export class UserManagementComponent {
     this.userService.getUsers().subscribe({
       next: (data) => {
         console.log('Usuarios cargados:', data);
+        this.usuariosOriginales = data;
         this.users = data;
         this.loading = false;
       },
       error: () => {
         this.error = 'Error al cargar usuarios';
+        this.usuariosOriginales = [];
         this.loading = false;
+        this.users = [];
       },
     });
+  }
+
+  aplicarFiltro(filtro: { departamento: number | null; cargo: number | null }) {
+    this.users = this.usuariosOriginales.filter(
+      (user) =>
+        (filtro.departamento == null ||
+          user.idDepartamento === filtro.departamento) &&
+        (filtro.cargo == null || user.idCargo === filtro.cargo)
+    );
   }
 
   getNombreDepartamento(id: number): string {

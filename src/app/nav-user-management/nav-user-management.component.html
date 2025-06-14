@@ -6,16 +6,18 @@
     </div>
     <div class="nav-user-management__actions">
         <mat-form-field appearance="fill" class="nav-user-management__select">
-            <mat-select placeholder="Seleccione un Departamento" [(value)]="selectedDepartamento">
-                <mat-option disabled [value]="null">Seleccione un Departamento</mat-option>
+            <mat-select (selectionChange)="onDepartamentoChange($event.value)" [value]="selectedDepartamento"
+                placeholder="Seleccione un Departamento" [(value)]="selectedDepartamento">
+                <mat-option [value]="null">Seleccione un Departamento</mat-option>
                 <mat-option *ngFor="let dept of departamentos" [value]="dept.id">
                     {{ dept.nombre }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill" class="nav-user-management__select">
-            <mat-select placeholder="Seleccione un Cargo" [(value)]="selectedCargo">
-                <mat-option disabled [value]="null">Seleccione un Cargo</mat-option>
+            <mat-select (selectionChange)="onCargoChange($event.value)" [value]="selectedCargo"
+                placeholder="Seleccione un Cargo" [(value)]="selectedCargo">
+                <mat-option [value]="null">Seleccione un Cargo</mat-option>
                 <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
                     {{ cargo.nombre }}
                 </mat-option>

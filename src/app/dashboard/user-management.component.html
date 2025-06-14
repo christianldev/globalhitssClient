@@ -1,5 +1,6 @@
-<app-nav-user-management (usuarioCreado)="loadUsers()">
+<app-nav-user-management (usuarioCreado)="loadUsers()" (filtroCambiado)="aplicarFiltro($event)">
 </app-nav-user-management>
+
 
 <div class="table-container">
 
