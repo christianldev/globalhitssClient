@@ -1,0 +1,74 @@
+:host ::ng-deep .mat-dialog-container {
+    padding: 2.5rem 2.5rem 2rem 2.5rem; // padding generoso en todos los lados
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-close-btn {
+    align-self: flex-start;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 2rem;
+}
+
+.modal-row {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.modal-field {
+    flex: 1;
+    min-width: 220px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+
+
+    &__registrar {
+        background: #0d74c6 !important;
+        color: #fff !important;
+        font-weight: 500;
+        border-radius: 3px;
+    }
+
+    &__cancelar {
+        background: #e9ecef !important;
+        color: #495057 !important;
+        font-weight: 500;
+        border-radius: 3px;
+    }
+}
+
+@media (max-width: 700px) {
+    .modal-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .modal-field {
+        min-width: 0;
+    }
+}

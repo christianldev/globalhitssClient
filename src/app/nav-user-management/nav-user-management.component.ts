@@ -7,6 +7,8 @@ import { Departamento } from '../../model/departamento-model';
 import { CommonModule } from '@angular/common';
 import { Cargo } from '../../model/cargo-model';
 import { CargoService } from '../../services/cargo-services';
+import { MatDialog } from '@angular/material/dialog';
+import { UserRegisterModalComponent } from '../user-register-modal/user-register-modal.component';
 
 @Component({
   selector: 'app-nav-user-management',
@@ -23,8 +25,28 @@ export class NavUserManagementComponent {
 
   constructor(
     private departamentoService: DepartamentoService,
-    private cargoService: CargoService
+    private cargoService: CargoService,
+    private dialog: MatDialog
   ) {}
+
+  openRegisterModal() {
+    this.dialog
+      .open(UserRegisterModalComponent, {
+        width: '900px', // O el valor que prefieras, por ejemplo '80vw'
+        maxWidth: '95vw', // Opcional, para evitar que se salga de la pantalla
+        data: {
+          departamentos: this.departamentos, // pásale los departamentos
+          cargos: this.cargos, // pásale los cargos
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          // Aquí puedes llamar a tu servicio para registrar el usuario
+          // this.userService.addUser(result).subscribe(...)
+        }
+      });
+  }
 
   ngOnInit(): void {
     this.departamentoService.getDepartamentos().subscribe({
