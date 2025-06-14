@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +9,8 @@ import { Cargo } from '../../model/cargo-model';
 import { CargoService } from '../../services/cargo-services';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegisterModalComponent } from '../user-register-modal/user-register-modal.component';
+import { User } from '../../model/user-model';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-nav-user-management',
@@ -21,11 +23,14 @@ export class NavUserManagementComponent {
   departamentos: Departamento[] = [];
   selectedDepartamento: number | null = null;
   cargos: Cargo[] = [];
+  users: User[] = [];
   selectedCargo: number | null = null;
+  @Output() usuarioCreado = new EventEmitter<void>();
 
   constructor(
     private departamentoService: DepartamentoService,
     private cargoService: CargoService,
+    private userService: UserService,
     private dialog: MatDialog
   ) {}
 
@@ -42,8 +47,7 @@ export class NavUserManagementComponent {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          // Aquí puedes llamar a tu servicio para registrar el usuario
-          // this.userService.addUser(result).subscribe(...)
+          this.usuarioCreado.emit();
         }
       });
   }

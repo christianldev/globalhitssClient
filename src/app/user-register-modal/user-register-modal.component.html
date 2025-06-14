@@ -1,19 +1,19 @@
-<div class="modal-header">
-    <h2 class="modal-title">Registrar usuario</h2>
-    <button mat-icon-button class="modal-close-btn" (click)="onCancel()" aria-label="Cerrar">
+<div class="user-modal__header">
+    <h2 class="user-modal__title">Registrar usuario</h2>
+    <button mat-icon-button class="user-modal__close-btn" (click)="onCancel()" aria-label="Cerrar">
         <mat-icon>close</mat-icon>
     </button>
 </div>
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="modal-form">
-    <div class="modal-row">
-        <mat-form-field appearance="fill" class="modal-field">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="user-modal__form">
+    <div class="user-modal__row">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Departamento:</mat-label>
             <mat-select formControlName="idDepartamento" required>
                 <mat-option [value]="null" disabled>Seleccione un Departamento</mat-option>
                 <mat-option *ngFor="let dep of departamentos" [value]="dep.id">{{ dep.nombre }}</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="modal-field">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Cargo:</mat-label>
             <mat-select formControlName="idCargo" required>
                 <mat-option [value]="null" disabled>Seleccione un perfil</mat-option>
@@ -21,42 +21,43 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <div class="modal-row">
-        <mat-form-field appearance="fill" class="modal-field">
+    <div class="user-modal__row">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Usuario:</mat-label>
             <input matInput formControlName="usuario" required />
         </mat-form-field>
-        <mat-form-field appearance="fill" class="modal-field">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Email:</mat-label>
             <input matInput formControlName="email" required />
         </mat-form-field>
     </div>
-    <div class="modal-row">
-        <mat-form-field appearance="fill" class="modal-field">
+    <div class="user-modal__row">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Primer Nombre:</mat-label>
             <input matInput formControlName="primerNombre" required />
         </mat-form-field>
-        <mat-form-field appearance="fill" class="modal-field">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Segundo Nombre:</mat-label>
             <input matInput formControlName="segundoNombre" />
         </mat-form-field>
     </div>
-    <div class="modal-row">
-        <mat-form-field appearance="fill" class="modal-field">
+    <div class="user-modal__row">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Primer Apellido:</mat-label>
             <input matInput formControlName="primerApellido" required />
         </mat-form-field>
-        <mat-form-field appearance="fill" class="modal-field">
+        <mat-form-field appearance="fill" class="user-modal__field">
             <mat-label>Segundo Apellido:</mat-label>
             <input matInput formControlName="segundoApellido" />
         </mat-form-field>
     </div>
-    <div class="modal-actions">
+    <div class="user-modal__divider"></div>
+    <div class="user-modal__actions">
         <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid"
-            class="modal-actions__registrar">
+            class="user-modal__btn user-modal__btn--registrar">
             Registrar
         </button>
-        <button mat-flat-button type="button" (click)="onCancel()" class="modal-actions__cancelar">
+        <button mat-flat-button type="button" (click)="onCancel()" class="user-modal__btn user-modal__btn--cancelar">
             Cancelar
         </button>
     </div>

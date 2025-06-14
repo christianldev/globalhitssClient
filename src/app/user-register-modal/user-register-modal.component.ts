@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-user-register-modal',
@@ -43,7 +44,9 @@ export class UserRegisterModalComponent {
 
   constructor(
     private fb: FormBuilder,
+    private userService: UserService,
     public dialogRef: MatDialogRef<UserRegisterModalComponent>,
+
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.departamentos = data.departamentos || [];
@@ -63,7 +66,17 @@ export class UserRegisterModalComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      this.userService.addUser(this.form.value).subscribe({
+        next: (user) => {
+          this.dialogRef.close(user);
+        },
+        error: (err) => {
+          this.dialogRef.close({
+            error:
+              'No se pudo crear el usuario. Por favor, inténtelo de nuevo más tarde.',
+          });
+        },
+      });
     }
   }
 
