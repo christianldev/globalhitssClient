@@ -194,3 +194,36 @@
     border-radius: 0 0 8px 8px;
     border-top: 1px solid rgba(89, 89, 90, 0.148);
 }
+
+
+.user-table__acciones-header {
+    text-align: center;
+}
+
+.user-table__action-btn {
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: none;
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &--edit .user-table__icon,
+    &--edit .user-table__text {
+        color: #1db954 !important;
+    }
+
+    &--delete .user-table__icon,
+    &--delete .user-table__text {
+        color: #e53935 !important;
+    }
+}
+
+.user-table__icon {
+    margin-right: 4px;
+}
+
+.user-table__text {}

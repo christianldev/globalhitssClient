@@ -1,30 +1,29 @@
 <div class="table-container">
-    <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z0 mat-mdc-table"> -->
     <div class="table-inner">
-        <table mat-table class="mat-elevation-z0 mat-mdc-table">
+        <table mat-table [dataSource]="users" class="mat-elevation-z0 mat-mdc-table">
             <ng-container matColumnDef="Usuario">
                 <th mat-header-cell *matHeaderCellDef>Usuario</th>
-                <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+                <td mat-cell *matCellDef="let user">{{ user.usuario }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Nombres">
                 <th mat-header-cell *matHeaderCellDef>Nombres</th>
-                <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+                <td mat-cell *matCellDef="let user">{{ user.primerNombre + ' ' + user.segundoNombre }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Apellidos">
                 <th mat-header-cell *matHeaderCellDef>Apellidos</th>
-                <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+                <td mat-cell *matCellDef="let user">{{ user.primerApellido + ' ' + user.segundoApellido }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Departamento">
                 <th mat-header-cell *matHeaderCellDef>Departamento</th>
-                <td mat-cell *matCellDef="let user">{{ user.department }}</td>
+                <td mat-cell *matCellDef="let user">{{ user.idDepartamento }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Cargo">
                 <th mat-header-cell *matHeaderCellDef>Cargo</th>
-                <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+                <td mat-cell *matCellDef="let user">{{ user.idCargo }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Email">
@@ -35,16 +34,16 @@
             <ng-container matColumnDef="Acciones">
                 <th mat-header-cell *matHeaderCellDef>Acciones</th>
                 <td mat-cell *matCellDef="let user">
-                    <div class="actions-cell">
-                        <button mat-icon-button class="edit-btn" aria-label="Editar">
-                            <mat-icon>edit</mat-icon>
-                            Editar
-                        </button>
-                        <button mat-icon-button class="delete-btn" aria-label="Eliminar">
-                            <mat-icon>delete</mat-icon>
-                            Eliminar
-                        </button>
-                    </div>
+                    <button mat-button class="user-table__action-btn user-table__action-btn--edit"
+                        (click)="onEdit(user)">
+                        <mat-icon class="user-table__icon user-table__icon--edit">edit</mat-icon>
+                        <span class="user-table__text user-table__text--edit">Editar</span>
+                    </button>
+                    <button mat-button class="user-table__action-btn user-table__action-btn--delete"
+                        (click)="onDelete(user)">
+                        <mat-icon class="user-table__icon user-table__icon--delete">delete</mat-icon>
+                        <span class="user-table__text user-table__text--delete">Eliminar</span>
+                    </button>
                 </td>
             </ng-container>
 
@@ -52,7 +51,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
         <div class="total-row">
-            <!-- Total Registros: {{ dataSource.length }} -->
+            Total Registros: {{ users.length }}
         </div>
     </div>
 </div>

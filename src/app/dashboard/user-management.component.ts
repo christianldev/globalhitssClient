@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { UserService } from '../../services/user-service';
+import { User } from '../../model/user-model';
 
 @Component({
   selector: 'app-user-management',
@@ -23,19 +25,35 @@ export class UserManagementComponent {
     'Acciones',
   ];
 
-  // constructor(private userService: UserService) {
-  //   this.loadUsers();
-  // }
+  loading = false;
+  error = '';
 
-  // loadUsers(): void {
-  //   this.userService.getUsers().subscribe((data) => {
-  //     this.users = data;
-  //   });
-  // }
+  constructor(private userService: UserService) {}
 
-  // addUser(user: any): void {
-  //   this.userService.addUser(user).subscribe(() => {
-  //     this.loadUsers(); // Reload users after adding a new one
-  //   });
-  // }
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.loading = true;
+    this.userService.getUsers().subscribe({
+      next: (data) => {
+        console.log('Usuarios cargados:', data);
+        this.users = data;
+        this.loading = false;
+      },
+      error: () => {
+        this.error = 'Error al cargar usuarios';
+        this.loading = false;
+      },
+    });
+  }
+
+  onEdit(user: User) {
+    // lógica para editar
+  }
+
+  onDelete(user: User) {
+    // lógica para eliminar
+  }
 }
