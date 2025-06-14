@@ -1,0 +1,208 @@
+openapi: 3.0.0
+info:
+  title: GlobalHitss API
+  version: 1.0.0
+  description: API para la gestión de usuarios, departamentos y cargos.
+
+servers:
+  - url: http://localhost:8000
+
+paths:
+  /api/users:
+    get:
+      summary: Obtener todos los usuarios
+      tags: [Usuarios]
+      responses:
+        "200":
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      summary: Crear un nuevo usuario
+      tags: [Usuarios]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "201":
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /api/users/{id}:
+    get:
+      summary: Obtener usuario por ID
+      tags: [Usuarios]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Usuario no encontrado
+    put:
+      summary: Actualizar usuario
+      tags: [Usuarios]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserInput"
+      responses:
+        "200":
+          description: Usuario actualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Usuario no encontrado
+    delete:
+      summary: Eliminar usuario
+      tags: [Usuarios]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Usuario eliminado
+        "404":
+          description: Usuario no encontrado
+
+  /api/departamentos:
+    get:
+      summary: Obtener todos los departamentos
+      tags: [Departamentos]
+      responses:
+        "200":
+          description: Lista de departamentos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Departamento"
+
+  /api/cargos:
+    get:
+      summary: Obtener todos los cargos
+      tags: [Cargos]
+      responses:
+        "200":
+          description: Lista de cargos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cargo"
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        usuario:
+          type: string
+        email:
+          type: string
+        primerNombre:
+          type: string
+        segundoNombre:
+          type: string
+          nullable: true
+        primerApellido:
+          type: string
+        segundoApellido:
+          type: string
+          nullable: true
+        idDepartamento:
+          type: integer
+        idCargo:
+          type: integer
+
+    UserInput:
+      type: object
+      properties:
+        usuario:
+          type: string
+        email:
+          type: string
+        primerNombre:
+          type: string
+        segundoNombre:
+          type: string
+          nullable: true
+        primerApellido:
+          type: string
+        segundoApellido:
+          type: string
+          nullable: true
+        idDepartamento:
+          type: integer
+        idCargo:
+          type: integer
+      required:
+        - usuario
+        - email
+        - primerNombre
+        - primerApellido
+        - idDepartamento
+        - idCargo
+
+    Departamento:
+      type: object
+      properties:
+        id:
+          type: integer
+        codigo:
+          type: string
+        nombre:
+          type: string
+        activo:
+          type: boolean
+        idUsuarioCreacion:
+          type: integer
+
+    Cargo:
+      type: object
+      properties:
+        id:
+          type: integer
+        codigo:
+          type: string
+        nombre:
+          type: string
+        activo:
+          type: boolean
+        idUsuarioCreacion:
+          type: integer
