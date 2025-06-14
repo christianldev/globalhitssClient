@@ -1,0 +1,22 @@
+<div class="nav-user-management">
+    <div class="nav-user-management__header">
+        <div class="nav-user-management__module">Módulo de Administración</div>
+        <div class="nav-user-management__title">Administración de usuarios</div>
+    </div>
+    <div class="nav-user-management__actions">
+        <mat-form-field appearance="fill" class="nav-user-management__select">
+            <mat-select placeholder="Seleccione un Departamento">
+                <mat-option disabled selected>Seleccione un Departamento</mat-option>
+                <!-- <mat-option *ngFor="let dept of departamentos" [value]="dept">{{dept}}</mat-option> -->
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="nav-user-management__select">
+            <mat-select placeholder="Seleccione un Cargo">
+                <mat-option disabled selected>Seleccione un Cargo</mat-option>
+                <!-- <mat-option *ngFor="let cargo of cargos" [value]="cargo">{{cargo}}</mat-option> -->
+            </mat-select>
+        </mat-form-field>
+        <span class="nav-user-management__spacer"></span>
+        <button mat-flat-button class="nav-user-management__btn">Crear nuevo usuario</button>
+    </div>
+</div>

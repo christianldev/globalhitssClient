@@ -1,0 +1,96 @@
+.nav-user-management {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    background: #f6f7fa;
+    padding: 32px 40px 16px 40px; // <-- padding derecho igual al izquierdo
+    border-bottom: 2px solid #e2e4ea;
+
+    &__header {
+        .nav-user-management__module {
+            font-size: 12px;
+            color: #7d8597;
+            font-weight: 500;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+
+        .nav-user-management__title {
+            font-size: 20px;
+            color: #2d3a4a;
+            font-weight: 600;
+            margin-bottom: 24px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 8px;
+
+        .nav-user-management__select {
+            min-width: 360px;
+
+
+            .mat-form-field-flex {
+                background: #e6ebef !important;
+                border-radius: 6px !important;
+                font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+                min-height: 46px;
+                align-items: center;
+                box-shadow: none !important;
+            }
+
+
+            .mat-form-field-underline,
+            .mat-form-field-ripple,
+            .mat-form-field-flex::after,
+            .mat-form-field-flex::before,
+            .mat-form-field-outline {
+                display: none !important;
+                border-bottom: none !important;
+            }
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0 !important;
+            }
+
+            .mat-form-field-infix {
+                border-bottom: none !important;
+                padding: 0 !important;
+                min-height: 46px; // Asegura la altura interna
+                display: flex;
+                align-items: center;
+            }
+
+            .mat-select-placeholder,
+            .mat-select-value {
+                color: #7d8597 !important;
+                opacity: 1 !important;
+                font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+                font-size: 12px !important;
+                line-height: 46px !important;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .nav-user-management__spacer {
+            flex: 1;
+        }
+
+        .nav-user-management__btn {
+            background: #e6ebef !important;
+            color: #2d3a4a !important;
+            border-radius: 4px !important;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 12px 32px;
+            box-shadow: none !important;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            align-self: flex-start;
+        }
+    }
+}
