@@ -226,4 +226,10 @@
     margin-right: 4px;
 }
 
+::ng-deep .mat-header-cell,
+::ng-deep .mat-cell {
+    text-align: center !important;
+    vertical-align: middle;
+}
+
 .user-table__text {}

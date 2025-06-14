@@ -5,9 +5,11 @@
     </div>
     <div class="nav-user-management__actions">
         <mat-form-field appearance="fill" class="nav-user-management__select">
-            <mat-select placeholder="Seleccione un Departamento">
-                <mat-option disabled selected>Seleccione un Departamento</mat-option>
-                <!-- <mat-option *ngFor="let dept of departamentos" [value]="dept">{{dept}}</mat-option> -->
+            <mat-select placeholder="Seleccione un Departamento" [(value)]="selectedDepartamento">
+                <mat-option disabled [value]="null">Seleccione un Departamento</mat-option>
+                <mat-option *ngFor="let dept of departamentos" [value]="dept.id">
+                    {{ dept.nombre }}
+                </mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill" class="nav-user-management__select">
