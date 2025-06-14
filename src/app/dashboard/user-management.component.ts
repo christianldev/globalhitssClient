@@ -9,6 +9,8 @@ import { Departamento } from '../../model/departamento-model';
 import { Cargo } from '../../model/cargo-model';
 import { DepartamentoService } from '../../services/departamento-service';
 import { CargoService } from '../../services/cargo-services';
+import { UserEditModalComponent } from '../user-edit-modal/user-edit-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-management',
@@ -43,7 +45,8 @@ export class UserManagementComponent {
   constructor(
     private userService: UserService,
     private departamentoService: DepartamentoService,
-    private cargoService: CargoService
+    private cargoService: CargoService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -75,18 +78,36 @@ export class UserManagementComponent {
 
   getNombreDepartamento(id: number): string {
     const dep = this.departamentos.find((d) => d.id === id);
-    console.log('Departamento encontrado:', dep);
+
     return dep ? dep.nombre : '';
   }
 
   getNombreCargo(id: number): string {
     const cargo = this.cargos.find((c) => c.id === id);
-    console.log('Cargo encontrado:', cargo);
+
     return cargo ? cargo.nombre : '';
   }
 
-  onEdit(user: User) {
-    // lógica para editar
+  openEditModal(user: User) {
+    this.dialog
+      .open(UserEditModalComponent, {
+        width: '900px', // O el valor que prefieras, por ejemplo '80vw'
+        maxWidth: '95vw', // Opcional, para evitar que se salga de la pantalla
+        data: {
+          user,
+          departamentos: this.departamentos,
+          cargos: this.cargos,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          // Llama a tu servicio para actualizar el usuario
+          this.userService.updateUser(result.id, result).subscribe(() => {
+            this.loadUsers();
+          });
+        }
+      });
   }
 
   onDelete(user: User) {

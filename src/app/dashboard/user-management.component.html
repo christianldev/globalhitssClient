@@ -39,7 +39,7 @@
                 <th mat-header-cell *matHeaderCellDef>Acciones</th>
                 <td mat-cell *matCellDef="let user">
                     <button mat-button class="user-table__action-btn user-table__action-btn--edit"
-                        (click)="onEdit(user)">
+                        (click)="openEditModal(user)">
                         <mat-icon class="user-table__icon user-table__icon--edit">edit</mat-icon>
                         <span class="user-table__text user-table__text--edit">Editar</span>
                     </button>
