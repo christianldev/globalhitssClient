@@ -1,59 +1,153 @@
-# Globalhitssfront
+# GlobalHitss - Gestión de Usuarios
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+Este proyecto incluye una **API RESTful** (Laravel) y un **cliente web** (Angular) para la administración de usuarios, departamentos y cargos.
 
-## Development server
+---
 
-To start a local development server, run:
+## Tabla de Contenidos
 
-```bash
-ng serve
+- [Características](#características)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+  - [API (Laravel)](#api-laravel)
+  - [Cliente (Angular)](#cliente-angular)
+- [Uso](#uso)
+- [Documentación de la API](#documentación-de-la-api)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Licencia](#licencia)
+
+---
+
+## Características
+
+- CRUD de usuarios, departamentos y cargos.
+- Filtros por departamento y cargo.
+- Modales para crear y editar usuarios.
+- Documentación OpenAPI y colección Postman.
+- Interfaz moderna con Angular Material.
+
+---
+
+## Requisitos
+
+- PHP >= 8.1
+- Composer
+- Node.js >= 18.x y npm
+- Angular 19
+- Base de datos SQL Server
+- (Opcional) Postman para pruebas de la API
+
+---
+
+## Instalación
+
+### API (Laravel)
+
+[nota]: ruta compartida para documentación de la API: https://documenter.getpostman.com/view/28559865/2sB2x6nsdH
+
+1. Clona el repositorio y entra a la carpeta de la API:
+
+   ```sh
+   git clone https://github.com/christianldev/globalhitssAPI
+   cd globalhitssAPI
+   ```
+
+2. Instala dependencias:
+
+   ```sh
+   composer install
+   ```
+
+3. Copia el archivo de entorno y configura tu base de datos:
+
+   ```sh
+   cp .env.example .env
+   # Edita .env con tus credenciales de base de datos
+   ```
+
+4. Genera la clave de la aplicación:
+
+   ```sh
+   php artisan key:generate
+   ```
+
+5. Ejecuta las migraciones:
+
+   ```sh
+   php artisan migrate
+   ```
+
+6. (Opcional) Si tienes seeders:
+
+   ```sh
+   php artisan db:seed
+   ```
+
+7. Inicia el servidor:
+   ```sh
+   php artisan serve
+   ```
+
+### Cliente (Angular)
+
+1. Clona el repositorio y entra a la carpeta de la API:
+
+   ```sh
+   git clone https://github.com/christianldev/globalhitssClient
+   cd globalhitssClient
+   ```
+
+2. En otra terminal, entra a la carpeta del cliente:
+
+   ```sh
+   cd ../globalhitssClient
+   ```
+
+3. Instala dependencias:
+
+   ```sh
+   npm install
+   ```
+
+4. Inicia la aplicación:
+   ```sh
+   ng serve
+   ```
+   Accede a [http://localhost:4200](http://localhost:4200)
+
+---
+
+## Uso
+
+- Accede al cliente web y usa la interfaz para gestionar usuarios, departamentos y cargos.
+- Usa los filtros para buscar usuarios por departamento o cargo.
+- Utiliza los botones de acción para editar o eliminar usuarios.
+
+---
+
+## Documentación de la API
+
+- La API está documentada en formato **OpenAPI** (`openapi.yaml` en la raíz del proyecto).
+- Puedes importar este archivo en **Postman** para probar los endpoints y ver la documentación interactiva.
+- También puedes publicar la documentación desde Postman para compartirla.
+
+---
+
+## Estructura del Proyecto
+
+```
+globalhitss-api/         # API Laravel
+globalhitssfront/        # Cliente Angular
+openapi.yaml             # Especificación OpenAPI de la API
+README.md
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Licencia
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+MIT
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Desarrollado por Christian Lopez** - [GitHub](https://github.com/christianldev)
