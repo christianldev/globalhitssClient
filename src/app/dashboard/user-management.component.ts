@@ -110,7 +110,14 @@ export class UserManagementComponent {
       });
   }
 
-  onDelete(user: User) {
-    // lógica para eliminar
+  deleteUser(user: User) {
+    if (confirm(`¿Seguro que deseas eliminar al usuario "${user.usuario}"?`)) {
+      this.userService.deleteUser(user.id).subscribe({
+        next: () => this.loadUsers(), // Recarga la lista tras eliminar
+        error: () => {
+          // Opcional: muestra un mensaje de error
+        },
+      });
+    }
   }
 }
